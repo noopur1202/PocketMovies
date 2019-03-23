@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PocketMovies</string>
+    <string name="action_settings">Settings</string>
+    <string name="sort_by_release_date">Sort by Release Date</string>
+    <string name="sort_by_rating">Sort by Rating</string>
+    <string name="movies">Movies</string>
+    <string name="pocket_movies">Pocket Movies</string>
+    <string name="abcd">abcd</string>
+</resources>
