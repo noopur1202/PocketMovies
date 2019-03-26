@@ -18,8 +18,8 @@ import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private final int VIEW_TYPE_ITEM = 0;
-    private final int VIEW_TYPE_LOADING = 1;
+    private final int displayMovie = 0;
+    private final int displayLoading = 1;
     private Context context;
     private ArrayList<MovieModel> movies;
 
@@ -33,15 +33,15 @@ public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        return movies.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+        return movies.get(position) == null ? displayLoading : displayMovie;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE_ITEM) {
+        if (viewType == displayMovie) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_image, parent, false);
             return new MovieViewHolder(view);
-        } else if (viewType == VIEW_TYPE_LOADING) {
+        } else if (viewType == displayLoading) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.progress_bar_layout, parent, false);
             return new LoadingViewHolder(view);
         }

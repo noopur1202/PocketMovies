@@ -41,11 +41,14 @@ public class MainActivity extends AppCompatActivity {
     private int pagesLoaded;
     private boolean reachedEnd;
     public static ArrayList<MovieModel> movies;
-    public static ArrayList<MovieModel> temp;
     public TextView message;
     private OnLoadMoreListener mOnLoadMoreListener;
     public static boolean gridView;
     FloatingActionButton sortFab;
+    private int lastVisibleItem, totalItemCount;
+    private GridLayoutManager gridLayoutManager;
+    private boolean isLoading;
+    private int visibleThreshold = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         sortFab = (FloatingActionButton) findViewById(R.id.sort_fab);
         movies = new ArrayList<>();
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),1, LinearLayoutManager.VERTICAL,false);
+        gridLayoutManager = new GridLayoutManager(getApplicationContext(),1, LinearLayoutManager.VERTICAL,false);
         mGridView.setLayoutManager(gridLayoutManager);
 
         message = (TextView) findViewById(R.id.message);
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
 
-        setupLazyLoad();
+        lazyLoad();
 
         sortFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +98,23 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 popup.show();
+            }
+        });
+
+        mGridView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                totalItemCount = gridLayoutManager.getItemCount();
+                lastVisibleItem = gridLayoutManager.findLastVisibleItemPosition();
+
+                if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                    if (mOnLoadMoreListener != null) {
+                        mOnLoadMoreListener.onLoadMore();
+                    }
+                    isLoading = true;
+                }
             }
         });
     }
@@ -221,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
                             reachedEnd = true;
                             mImageAdapter.notifyItemRemoved(movies.size());
                             mImageAdapter.notifyDataSetChanged();
+                            setLoaded();
                         }
                     }
 
@@ -229,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
                         movies.remove(movies.size() - 1);
                         mImageAdapter.notifyItemRemoved(movies.size());
                         mImageAdapter.notifyDataSetChanged();
+                        setLoaded();
                     }
                 });
             }
@@ -269,10 +291,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             mImageAdapter.notifyDataSetChanged();
+            setLoaded();
         }
     }
 
-    private void setupLazyLoad() {
+    private void lazyLoad() {
 
         setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
@@ -288,5 +311,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
         this.mOnLoadMoreListener = mOnLoadMoreListener;
+    }
+
+    public void setLoaded() {
+        isLoading = false;
     }
 }
