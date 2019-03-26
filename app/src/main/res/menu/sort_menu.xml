@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.workstation.pocketmovies.MainActivity">
+
+    <item
+        android:id="@+id/sort_rating"
+        android:title="@string/sort_by_rating"/>
+
+    <item
+        android:id="@+id/sort_release"
+        android:title="@string/sort_by_release_date"/>
+
+</menu>

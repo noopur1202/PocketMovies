@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5sp"
     android:weightSum="1">
 
 
@@ -13,15 +15,26 @@
         android:layout_height="180sp"
         android:layout_margin="10sp"
         android:elevation="5sp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/movie_name"
-        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:text="abcd"/>
+        android:text="@string/abcd"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_description"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:text="@string/xyz"/>
 
 </LinearLayout>

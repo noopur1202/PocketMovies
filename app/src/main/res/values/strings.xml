@@ -5,5 +5,11 @@
     <string name="sort_by_rating">Sort by Rating</string>
     <string name="movies">Movies</string>
     <string name="pocket_movies">Pocket Movies</string>
+    <string name="search">Search</string>
+    <string name="grid">grid</string>
+    <string name="xyz">xyz</string>
     <string name="abcd">abcd</string>
+    <string name="search_text">Hit search on top to search a movie</string>
+    <string name="no_results">No results.</string>
+    <string name="server_error">Server error. Try Again</string>
 </resources>

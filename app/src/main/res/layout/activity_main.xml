@@ -1,66 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pocket_movies"
-                android:layout_marginStart="10sp"
-                android:textSize="30sp"
-                tools:ignore="RelativeOverlap" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/list"
-                android:id="@+id/list_icon"
-                android:layout_toStartOf="@+id/settings_icon"
-                android:layout_marginEnd="10sp"
-                android:clickable="true"
-                android:layout_gravity="end"
-                tools:ignore="ContentDescription"
-                android:focusable="true" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/settings"
-                android:layout_marginEnd="10sp"
-                android:id="@+id/settings_icon"
-                android:clickable="true"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="end"
-                tools:ignore="ContentDescription"
-                android:focusable="true" />
-        </RelativeLayout>
-    </android.support.design.widget.AppBarLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
 
-        <GridView
-            android:id="@+id/grid_main"
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/grid_recycler"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:numColumns="2" />
+            android:layout_centerInParent="true"
+            android:text="@string/search_text"
+            android:textSize="16sp"
+            android:visibility="visible" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/sort_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:src="@mipmap/sort"
+            android:layout_margin="16dp" />
 
     </RelativeLayout>
 </LinearLayout>

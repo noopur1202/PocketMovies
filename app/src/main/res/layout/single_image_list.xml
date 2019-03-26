@@ -21,10 +21,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/movie_name"
+        android:textStyle="bold"
         android:layout_toEndOf="@id/movie_image"
         android:textSize="15sp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:text="@string/abcd"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_description"
+        android:layout_toEndOf="@id/movie_image"
+        android:layout_below="@+id/movie_name"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:text="@string/xyz"/>
 
 </RelativeLayout>
